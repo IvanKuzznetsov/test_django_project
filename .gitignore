@@ -17,6 +17,13 @@ media
 .idea/**/dictionaries
 .idea/**/shelf
 
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/test_django_project.iml
+/.idea/vcs.xml
+
+
 # AWS User-specific
 .idea/**/aws.xml
 
