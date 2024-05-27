@@ -22,6 +22,7 @@ media
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/test_django_project.iml
 /.idea/vcs.xml
+/.idea/.gitignore
 
 
 # AWS User-specific
