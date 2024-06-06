@@ -29,9 +29,9 @@ function RegisterForm() {
 
       setIsPending(true);
 
-      // url от бэка - http://127.0.0.1:8000/register/
+      // url от бэка - http://127.0.0.1:8000/auth/users/
 
-      fetch("http://127.0.0.1:8000/register/", {
+      fetch("http://127.0.0.1:8000/auth/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

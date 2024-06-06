@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "corsheaders",
+    "rest_framework.authtoken",
+    "djoser",
 
     "register",
 ]
@@ -47,12 +49,23 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5174",
+    "http://localhost:5173",
 ]
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATE_EMAIL': False,
+    'SERIALIZERS': {},
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
