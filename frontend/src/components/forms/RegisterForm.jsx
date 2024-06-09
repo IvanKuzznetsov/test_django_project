@@ -145,74 +145,94 @@ function RegisterForm() {
     <div>
       {!isSuccessfull && !isUnsuccessfull ? (
         <form className={styles.regForm} onSubmit={handleFormSubmit}>
-          <p>User registration form</p>
+          <p>Регистрация нового пользователя</p>
           <hr />
-          <label>
-            Username:
-            <input
-              type="text"
-              value={data.username}
-              onChange={(e) => handleInputChange(e, "username")}
-              required
-            />
-            {errors.username && (
-              <div className={styles.error}>{errors.username}</div>
-            )}
-          </label>
-          <label>
-            Phone number:
-            <input
-              type="tel"
-              value={data.phone}
-              onChange={handlePhoneChange}
-              required
-            />
-            {errors.phone && <div className={styles.error}>{errors.phone}</div>}
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              value={data.email}
-              onChange={(e) => handleInputChange(e, "email")}
-              required
-            />
-            {errors.email && (
-              <span className={styles.error}>{errors.email}</span>
-            )}
-          </label>
-          <label>
-            Password:
-            <input
-              type="password"
-              value={data.password}
-              onChange={(e) => handleInputChange(e, "password")}
-              autoComplete="off"
-              required
-            />
-            {errors.password && (
-              <div className={styles.error}>{errors.password}</div>
-            )}
-          </label>
-          <label>
-            Confirm password:
-            <input
-              type="password"
-              value={data.confirmPassword}
-              onChange={(e) => handleInputChange(e, "confirmPassword")}
-              autoComplete="off"
-              required
-            />
-            {errors.confirmPassword && (
-              <div className={styles.error}>{errors.confirmPassword}</div>
-            )}
-          </label>
-          {!isPending && <button>Register</button>}
+          <div className={styles.regFormMain}>
+            <div className={styles.regFormLeft}>
+              <label>
+                Имя:
+                <input
+                  type="text"
+                  value={data.username}
+                  onChange={(e) => handleInputChange(e, "username")}
+                  required
+                />
+                {errors.username && (
+                  <div className={styles.error}>{errors.username}</div>
+                )}
+              </label>
+              <label>
+                Номер телефона:
+                <input
+                  type="tel"
+                  value={data.phone}
+                  onChange={handlePhoneChange}
+                  required
+                />
+                {errors.phone && (
+                  <div className={styles.error}>{errors.phone}</div>
+                )}
+              </label>
+              <label>
+                Придумайте пароль:
+                <input
+                  type="password"
+                  value={data.password}
+                  onChange={(e) => handleInputChange(e, "password")}
+                  autoComplete="off"
+                  required
+                />
+                {errors.password && (
+                  <div className={styles.error}>{errors.password}</div>
+                )}
+              </label>
+            </div>
+            <div className={styles.regFormRight}>
+              <label>
+                Фамилия:
+                <input
+                  type="text"
+                  value={data.username}
+                  onChange={(e) => handleInputChange(e, "username")}
+                  required
+                />
+                {errors.username && (
+                  <div className={styles.error}>{errors.username}</div>
+                )}
+              </label>
+              <label>
+                Электронная почта:
+                <input
+                  type="email"
+                  value={data.email}
+                  onChange={(e) => handleInputChange(e, "email")}
+                  required
+                />
+                {errors.email && (
+                  <span className={styles.error}>{errors.email}</span>
+                )}
+              </label>
+              <label>
+                Повторите пароль:
+                <input
+                  type="password"
+                  value={data.confirmPassword}
+                  onChange={(e) => handleInputChange(e, "confirmPassword")}
+                  autoComplete="off"
+                  required
+                />
+                {errors.confirmPassword && (
+                  <div className={styles.error}>{errors.confirmPassword}</div>
+                )}
+              </label>
+            </div>
+          </div>
+          {!isPending && <button>Регистрация</button>}
           {isPending && <div className={styles.loader}></div>}
           <div className={styles.alreadyRegistered}>
-            Alredy registered?{" "}
+            Уже зарегистрированы?{" "}
             <Link to="/login" className={styles.anchorToLogin}>
-              Login
+              Вход
             </Link>
           </div>
         </form>
