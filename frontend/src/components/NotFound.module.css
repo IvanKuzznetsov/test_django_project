@@ -1,0 +1,12 @@
+.notFoundContainer {
+  margin: 8% auto;
+  padding: 70px;
+  max-width: 400px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
+  text-align: center;
+}
+.notFoundContainer p {
+  font-size: 32px;
+}

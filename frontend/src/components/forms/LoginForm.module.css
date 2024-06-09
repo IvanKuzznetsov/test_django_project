@@ -1,0 +1,96 @@
+.loginForm {
+  margin: 8% auto;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
+}
+.loginForm p {
+  font-size: 24px;
+  margin-block: 12px;
+}
+.loginForm hr {
+  width: 100%;
+  border: none;
+  height: 2px;
+  background-color: #e0e0e0;
+  margin-bottom: 4px;
+}
+.loginForm label {
+  display: block;
+  font-size: 14px;
+  margin-top: 14px;
+}
+.loginForm input {
+  font-family: inherit;
+  display: block;
+  width: 300px;
+  min-height: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 3px 15px;
+  font-size: 16px;
+}
+.loginForm input:active,
+.loginForm input:focus,
+.loginForm input:hover {
+  outline: none;
+  outline-offset: none;
+}
+.forgotPwd {
+  min-width: 332px;
+  font-size: 14px;
+  text-align: right;
+  margin-top: 10px;
+}
+.forgotPwdAnchor {
+  color: hsla(0, 99%, 61%, 0.704);
+}
+.loginForm button {
+  height: 45px;
+  min-width: 332px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  letter-spacing: 1.2px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: hsl(0, 99%, 61%);
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+.loginForm button:hover {
+  background-color: hsl(0, 99%, 55%);
+}
+.notRegistered {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.anchorToRegister {
+  font-weight: bold;
+  letter-spacing: 1.01px;
+  color: hsl(0, 99%, 61%);
+  transition-duration: 0.2s;
+}
+.anchorToRegister:hover {
+  color: hsl(0, 99%, 48%);
+}
+.waysToLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.waysToLogin p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.waysToLoginLinks {
+  display: flex;
+  gap: 20px;
+}
