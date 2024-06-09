@@ -9,12 +9,11 @@ function LoginForm() {
   });
 
   const [isPending, setIsPending] = useState(false);
-  const [isSuccessfull, setIsSuccessfull] = useState(false);
-  const [isUnsuccessfull, setIsUnsucessfull] = useState(false);
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(data);
+
+    setIsPending(true);
 
     fetch("http://127.0.0.1:8000/auth/users", {
       method: "POST",
@@ -23,17 +22,18 @@ function LoginForm() {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => {
-        console.log("Response OK");
+      .then(() => {
+        setIsPending(false);
+        console.log(data);
       })
       .catch((error) => {
-        console.log("Error appeared:" + error);
+        setIsPending(false);
+        console.log(error);
       });
   }
 
   function handleInputChange(event, name) {
-    const { value } = event.target;
-    setData({ ...data, [name]: value });
+    setData({ ...data, [name]: event.target.value });
   }
 
   return (
@@ -64,7 +64,9 @@ function LoginForm() {
           Забыли пароль?
         </Link>
       </div>
-      <button>Вход</button>
+      {!isPending && <button>Вход</button>}
+      {isPending && <div className={styles.loader}></div>}
+
       <div className={styles.waysToLogin}>
         <p>Или войдите используя:</p>
         <div className={styles.waysToLoginLinks}>

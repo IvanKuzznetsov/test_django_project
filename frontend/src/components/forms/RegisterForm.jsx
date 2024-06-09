@@ -47,7 +47,6 @@ function RegisterForm() {
         body: JSON.stringify(formData),
       })
         .then((response) => {
-          console.log(formData);
           setIsPending(false);
           if (response.ok) {
             setIsSuccessfull(true);
