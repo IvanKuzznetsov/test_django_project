@@ -14,12 +14,12 @@ function HomePage() {
         "странички" есть еще кликабельные ссылки, которые тоже куда-то ведут.
       </p>
       <div className={styles.homeBtnContainer}>
-        <button>
-          <Link to="/register">Регистрация пользователя</Link>
-        </button>
-        <button>
-          <Link to="/login">Вход на сайт</Link>
-        </button>
+        <Link to="/register">
+          <button>Регистрация пользователя</button>
+        </Link>
+        <Link to="/login">
+          <button>Вход на сайт</button>
+        </Link>
       </div>
     </div>
   );

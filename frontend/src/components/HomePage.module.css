@@ -4,7 +4,7 @@
 .homeContainer {
   margin: 4% auto;
   padding: 40px;
-  max-width: 600px;
+  max-width: 800px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
@@ -30,6 +30,7 @@
   border-radius: 5px;
   background-color: #fe3939;
   cursor: pointer;
+  color: white;
   transition-duration: 0.2s;
 }
 .homeBtnContainer button:hover {
@@ -37,5 +38,4 @@
 }
 .homeBtnContainer a {
   text-decoration: none;
-  color: white;
 }
