@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./LoginForm.module.css";
-import { useState } from "react";
 
 function LoginForm() {
   const [data, setData] = useState({
@@ -38,10 +38,10 @@ function LoginForm() {
 
   return (
     <form className={styles.loginForm} onSubmit={handleFormSubmit}>
-      <p>User login form</p>
+      <p>Вход на сайт</p>
       <hr />
       <label>
-        Email:
+        Электронная почта:
         <input
           type="email"
           value={data.mail}
@@ -50,7 +50,7 @@ function LoginForm() {
         />
       </label>
       <label>
-        Password:
+        Пароль:
         <input
           type="password"
           value={data.password}
@@ -60,24 +60,32 @@ function LoginForm() {
         />
       </label>
       <div className={styles.forgotPwd}>
-        <Link to="/password-reset" className={styles.forgotPwdAnchor}>
-          Forgot password?
+        <Link to="*" className={styles.forgotPwdAnchor}>
+          Забыли пароль?
         </Link>
       </div>
-      <button>Login</button>
+      <button>Вход</button>
       <div className={styles.waysToLogin}>
-        <p>Or login using:</p>
+        <p>Или войдите используя:</p>
         <div className={styles.waysToLoginLinks}>
-          <img src="icons/vk-icon.svg" alt="vk" width={30} />
-          <img src="icons/yandex-icon.svg" alt="ya" width={30} />
-          <img src="icons/mail-icon.svg" alt="mail" width={30} />
-          <img src="icons/gmail-icon.svg" alt="gmail" width={30} />
+          <Link to="*">
+            <img src="icons/vk-icon.svg" alt="vk" width={30} />
+          </Link>
+          <Link to="*">
+            <img src="icons/yandex-icon.svg" alt="ya" width={30} />
+          </Link>
+          <Link to="*">
+            <img src="icons/mail-icon.svg" alt="mail" width={30} />
+          </Link>
+          <Link to="*">
+            <img src="icons/gmail-icon.svg" alt="gmail" width={30} />
+          </Link>
         </div>
       </div>
       <div className={styles.notRegistered}>
-        Not registered yet?{" "}
+        Еще не зарегистрированы?{" "}
         <Link to="/register" className={styles.anchorToRegister}>
-          Register
+          Регистрация
         </Link>
       </div>
     </form>

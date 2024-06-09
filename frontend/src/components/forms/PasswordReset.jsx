@@ -1,5 +1,5 @@
 function PasswordReset() {
-  return <div>Password reset form will be there</div>;
+  return <div>Тут еще ничего нет, но когда-то появится</div>;
 }
 
 export default PasswordReset;

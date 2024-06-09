@@ -1,11 +1,12 @@
 .loginForm {
   margin: 4% auto;
-  max-width: 600px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
+  background-color: hsla(0, 0%, 100%, 0.755);
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
 }
 .loginForm p {
@@ -25,6 +26,7 @@
   margin-top: 14px;
 }
 .loginForm input {
+  margin-top: 5px;
   font-family: inherit;
   display: block;
   width: 300px;
@@ -45,15 +47,18 @@
   font-size: 14px;
   text-align: right;
   margin-top: 10px;
+  /* margin-bottom: 15px; */
 }
 .forgotPwdAnchor {
   color: hsla(0, 99%, 61%, 0.704);
 }
 .loginForm button {
+  font-family: inherit;
+  font-weight: 300;
   height: 45px;
   min-width: 332px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   font-size: 18px;
   letter-spacing: 1.2px;
   border: none;
@@ -72,7 +77,6 @@
 }
 .anchorToRegister {
   font-weight: bold;
-  letter-spacing: 1.01px;
   color: hsl(0, 99%, 61%);
   transition-duration: 0.2s;
 }
@@ -84,7 +88,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 .waysToLogin p {
   font-size: 18px;
