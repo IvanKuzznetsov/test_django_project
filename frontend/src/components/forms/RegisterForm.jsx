@@ -3,20 +3,24 @@ import { Link } from "react-router-dom";
 import styles from "./RegisterForm.module.css";
 
 function RegisterForm() {
-  const USER_REGEX = /^[A-Z][a-z]{1,14}$/;
+  const NAME_REGEX = /^[А-ЯЁ][а-яё]{1,}$/;
+  const SURNAME_REGEX = /^[А-ЯЁ][а-яё]{1,}$/;
   const PHONE_REGEX = /^\+7\d{10}$/;
   const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const PWD_REGEX = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+  const PWD_REGEX =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*(),.?":{}|<>]{6,}$/;
 
   const [data, setData] = useState({
-    username: "",
+    name: "",
+    surname: "",
     phone: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({
-    username: "",
+    name: "",
+    surname: "",
     phone: "",
     email: "",
     password: "",
@@ -43,6 +47,7 @@ function RegisterForm() {
         body: JSON.stringify(formData),
       })
         .then((response) => {
+          console.log(formData);
           setIsPending(false);
           if (response.ok) {
             setIsSuccessfull(true);
@@ -83,31 +88,38 @@ function RegisterForm() {
   function validateField(name, value) {
     let error = "";
     switch (name) {
-      case "username":
-        if (!USER_REGEX.test(value)) {
+      case "name":
+        if (!NAME_REGEX.test(value)) {
           error =
-            "Username must start with a capital letter and be 2-15 characters long. (English only)";
+            "Некорректный ввод. Только кириллица, первая буква должна быть заглавной, остальные строчными.";
+        }
+        break;
+      case "surname":
+        if (!SURNAME_REGEX.test(value)) {
+          error =
+            "Некорректный ввод. Только кириллица, первая буква должна быть заглавной, остальные строчными.";
         }
         break;
       case "phone":
         if (!PHONE_REGEX.test(value)) {
-          error = "Incorrect phone number";
+          error =
+            "Некорректный ввод. Номер должен начинаться с +7, далее ваш номер, всего 11 цифр";
         }
         break;
       case "email":
         if (!EMAIL_REGEX.test(value)) {
-          error = "Invalid email address.";
+          error = "Некорректный адрес электронной почты.";
         }
         break;
       case "password":
         if (!PWD_REGEX.test(value)) {
           error =
-            "Password must be at least 6 characters long, contain a capital letter, a lowercase letter, and a digit.";
+            "Длина пароля - минимум 6 символов. Должен содержать одну заглавную букву, одну строчную, а также символ.Только латиница.";
         }
         break;
       case "confirmPassword":
         if (value !== data.password) {
-          error = "Passwords do not match.";
+          error = "Пароли не совпадают.";
         }
         break;
       default:
@@ -117,23 +129,26 @@ function RegisterForm() {
   }
 
   function validateForm() {
-    const { username, phone, email, password, confirmPassword } = data;
-    const usernameValid = USER_REGEX.test(username);
+    const { name, phone, email, surname, password, confirmPassword } = data;
+    const nameValid = NAME_REGEX.test(name);
+    const surnameValid = SURNAME_REGEX.test(surname);
     const phoneValid = PHONE_REGEX.test(phone);
     const emailValid = EMAIL_REGEX.test(email);
     const passwordValid = PWD_REGEX.test(password);
     const passwordsMatch = password === confirmPassword;
 
     setErrors({
-      username: usernameValid ? "" : "Invalid username.",
-      phone: phoneValid ? "" : "Invalid phone number.",
-      email: emailValid ? "" : "Invalid email.",
-      password: passwordValid ? "" : "Invalid password.",
-      confirmPassword: passwordsMatch ? "" : "Passwords do not match.",
+      name: nameValid ? "" : "Некорректное имя.",
+      surname: surnameValid ? "" : "Некорректная фамилия.",
+      phone: phoneValid ? "" : "Некорректный номер телефона.",
+      email: emailValid ? "" : "Некорректный адрес электронной почты.",
+      password: passwordValid ? "" : "Некорректный пароль.",
+      confirmPassword: passwordsMatch ? "" : "Пароли не совпадают.",
     });
 
     return (
-      usernameValid &&
+      nameValid &&
+      surnameValid &&
       phoneValid &&
       emailValid &&
       passwordValid &&
@@ -147,87 +162,77 @@ function RegisterForm() {
         <form className={styles.regForm} onSubmit={handleFormSubmit}>
           <p>Регистрация нового пользователя</p>
           <hr />
-          <div className={styles.regFormMain}>
-            <div className={styles.regFormLeft}>
-              <label>
-                Имя:
-                <input
-                  type="text"
-                  value={data.username}
-                  onChange={(e) => handleInputChange(e, "username")}
-                  required
-                />
-                {errors.username && (
-                  <div className={styles.error}>{errors.username}</div>
-                )}
-              </label>
-              <label>
-                Номер телефона:
-                <input
-                  type="tel"
-                  value={data.phone}
-                  onChange={handlePhoneChange}
-                  required
-                />
-                {errors.phone && (
-                  <div className={styles.error}>{errors.phone}</div>
-                )}
-              </label>
-              <label>
-                Придумайте пароль:
-                <input
-                  type="password"
-                  value={data.password}
-                  onChange={(e) => handleInputChange(e, "password")}
-                  autoComplete="off"
-                  required
-                />
-                {errors.password && (
-                  <div className={styles.error}>{errors.password}</div>
-                )}
-              </label>
-            </div>
-            <div className={styles.regFormRight}>
-              <label>
-                Фамилия:
-                <input
-                  type="text"
-                  value={data.username}
-                  onChange={(e) => handleInputChange(e, "username")}
-                  required
-                />
-                {errors.username && (
-                  <div className={styles.error}>{errors.username}</div>
-                )}
-              </label>
-              <label>
-                Электронная почта:
-                <input
-                  type="email"
-                  value={data.email}
-                  onChange={(e) => handleInputChange(e, "email")}
-                  required
-                />
-                {errors.email && (
-                  <span className={styles.error}>{errors.email}</span>
-                )}
-              </label>
-              <label>
-                Повторите пароль:
-                <input
-                  type="password"
-                  value={data.confirmPassword}
-                  onChange={(e) => handleInputChange(e, "confirmPassword")}
-                  autoComplete="off"
-                  required
-                />
-                {errors.confirmPassword && (
-                  <div className={styles.error}>{errors.confirmPassword}</div>
-                )}
-              </label>
-            </div>
-          </div>
-          {!isPending && <button>Регистрация</button>}
+          <label>
+            Имя:
+            <input
+              type="text"
+              value={data.name}
+              onChange={(e) => handleInputChange(e, "name")}
+              required
+            />
+            {errors.name && <div className={styles.error}>{errors.name}</div>}
+          </label>
+          <label>
+            Фамилия:
+            <input
+              type="text"
+              value={data.surname}
+              onChange={(e) => handleInputChange(e, "surname")}
+              required
+            />
+            {errors.surname && (
+              <div className={styles.error}>{errors.surname}</div>
+            )}
+          </label>
+          <label>
+            Номер телефона:
+            <input
+              type="tel"
+              value={data.phone}
+              onChange={handlePhoneChange}
+              required
+            />
+            {errors.phone && <div className={styles.error}>{errors.phone}</div>}
+          </label>
+          <label>
+            Электронная почта:
+            <input
+              type="email"
+              value={data.email}
+              onChange={(e) => handleInputChange(e, "email")}
+              required
+            />
+            {errors.email && (
+              <span className={styles.error}>{errors.email}</span>
+            )}
+          </label>
+          <label>
+            Придумайте пароль:
+            <input
+              type="password"
+              value={data.password}
+              onChange={(e) => handleInputChange(e, "password")}
+              autoComplete="off"
+              required
+            />
+            {errors.password && (
+              <div className={styles.error}>{errors.password}</div>
+            )}
+          </label>
+          <label>
+            Повторите пароль:
+            <input
+              type="password"
+              value={data.confirmPassword}
+              onChange={(e) => handleInputChange(e, "confirmPassword")}
+              autoComplete="off"
+              required
+            />
+            {errors.confirmPassword && (
+              <div className={styles.error}>{errors.confirmPassword}</div>
+            )}
+          </label>
+          {!isPending && <button type="submit">Регистрация</button>}
           {isPending && <div className={styles.loader}></div>}
           <div className={styles.alreadyRegistered}>
             Уже зарегистрированы?{" "}
@@ -237,13 +242,16 @@ function RegisterForm() {
           </div>
         </form>
       ) : isSuccessfull ? (
-        <div className={styles.succesMessage}>
-          New user successfully added!
+        <div className={styles.successMessage}>
+          <p>Новый пользователь успешно добавлен!</p>
           <img src="./dancing-cat.gif" alt="" width={100} />
         </div>
       ) : (
         <div className={styles.errorMessage}>
-          Error appeared, restart page :(
+          <p>
+            Ошибка! <br />
+            Попробуйте заново :(
+          </p>
           <img src="./sad-cat.gif" alt="sad cat gif" width={200} />
         </div>
       )}

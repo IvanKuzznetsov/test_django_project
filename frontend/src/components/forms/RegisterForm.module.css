@@ -1,17 +1,17 @@
 .regForm {
   margin: 4% auto;
-  max-width: 800px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
   background-color: hsla(0, 0%, 100%, 0.755);
-
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
 }
 .regForm p {
   font-size: 24px;
+  text-align: center;
   margin-block: 12px;
 }
 .regForm hr {
@@ -20,14 +20,6 @@
   height: 2px;
   background-color: #e0e0e0;
   margin-bottom: 4px;
-}
-.regFormMain {
-  display: flex;
-}
-.regFormLeft,
-.regFormRight {
-  min-width: 50%;
-  padding: 10px;
 }
 .regForm label {
   display: block;
@@ -107,9 +99,10 @@
     transform: rotate(1turn);
   }
 }
-.succesMessage {
+.successMessage {
   margin: 8% auto;
-  max-width: 400px;
+  padding-block: 15px;
+  max-width: 500px;
   height: 280px;
   display: flex;
   flex-direction: column;
@@ -118,14 +111,19 @@
   gap: 20px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
+  background-color: hsla(0, 0%, 100%, 0.755);
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
   font-size: 22px;
   color: hsl(0, 99%, 61%);
 }
+.successMessage p {
+  text-align: center;
+}
 .errorMessage {
   margin: 8% auto;
-  max-width: 400px;
-  height: 340px;
+  padding-block: 15px;
+  max-width: 500px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,9 +131,14 @@
   gap: 20px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
+  background-color: hsla(0, 0%, 100%, 0.755);
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
-  font-size: 22px;
+  font-size: 24px;
   color: hsl(0, 99%, 61%);
+}
+.errorMessage p {
+  text-align: center;
+  margin-bottom: 12px;
 }
 .alreadyRegistered {
   font-size: 14px;
