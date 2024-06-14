@@ -11,16 +11,16 @@ function RegisterForm() {
     /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*(),.?":{}|<>]{6,}$/;
 
   const [data, setData] = useState({
-    name: "",
-    surname: "",
+    username: "",
+    last_name: "",
     phone: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({
-    name: "",
-    surname: "",
+    username: "",
+    last_name: "",
     phone: "",
     email: "",
     password: "",
@@ -39,7 +39,7 @@ function RegisterForm() {
 
       // url от бэка - http://127.0.0.1:8000/auth/users
 
-      fetch("http://127.0.0.1:8000/auth/users", {
+      fetch("http://127.0.0.1:8000/auth/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,13 +87,13 @@ function RegisterForm() {
   function validateField(name, value) {
     let error = "";
     switch (name) {
-      case "name":
+      case "username":
         if (!NAME_REGEX.test(value)) {
           error =
             "Некорректный ввод. Только кириллица, первая буква должна быть заглавной, остальные строчными.";
         }
         break;
-      case "surname":
+      case "last_name":
         if (!SURNAME_REGEX.test(value)) {
           error =
             "Некорректный ввод. Только кириллица, первая буква должна быть заглавной, остальные строчными.";
@@ -128,17 +128,18 @@ function RegisterForm() {
   }
 
   function validateForm() {
-    const { name, phone, email, surname, password, confirmPassword } = data;
-    const nameValid = NAME_REGEX.test(name);
-    const surnameValid = SURNAME_REGEX.test(surname);
+    const { username, phone, email, last_name, password, confirmPassword } =
+      data;
+    const usernameValid = NAME_REGEX.test(username);
+    const last_nameValid = SURNAME_REGEX.test(last_name);
     const phoneValid = PHONE_REGEX.test(phone);
     const emailValid = EMAIL_REGEX.test(email);
     const passwordValid = PWD_REGEX.test(password);
     const passwordsMatch = password === confirmPassword;
 
     setErrors({
-      name: nameValid ? "" : "Некорректное имя.",
-      surname: surnameValid ? "" : "Некорректная фамилия.",
+      name: usernameValid ? "" : "Некорректное имя.",
+      surname: last_nameValid ? "" : "Некорректная фамилия.",
       phone: phoneValid ? "" : "Некорректный номер телефона.",
       email: emailValid ? "" : "Некорректный адрес электронной почты.",
       password: passwordValid ? "" : "Некорректный пароль.",
@@ -146,8 +147,8 @@ function RegisterForm() {
     });
 
     return (
-      nameValid &&
-      surnameValid &&
+      usernameValid &&
+      last_nameValid &&
       phoneValid &&
       emailValid &&
       passwordValid &&
@@ -166,21 +167,23 @@ function RegisterForm() {
             <input
               type="text"
               value={data.name}
-              onChange={(e) => handleInputChange(e, "name")}
+              onChange={(e) => handleInputChange(e, "username")}
               required
             />
-            {errors.name && <div className={styles.error}>{errors.name}</div>}
+            {errors.username && (
+              <div className={styles.error}>{errors.username}</div>
+            )}
           </label>
           <label>
             Фамилия:
             <input
               type="text"
-              value={data.surname}
-              onChange={(e) => handleInputChange(e, "surname")}
+              value={data.last_name}
+              onChange={(e) => handleInputChange(e, "last_name")}
               required
             />
-            {errors.surname && (
-              <div className={styles.error}>{errors.surname}</div>
+            {errors.last_name && (
+              <div className={styles.error}>{errors.last_name}</div>
             )}
           </label>
           <label>
