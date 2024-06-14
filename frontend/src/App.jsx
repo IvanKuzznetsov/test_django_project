@@ -9,17 +9,15 @@ import MainLayout from "./layouts/MainLayout";
 function App() {
   return (
     <BrowserRouter>
-      <main>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/password-reset" element={<PasswordReset />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
