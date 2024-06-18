@@ -1,0 +1,17 @@
+.btn {
+  font-family: inherit;
+  font-weight: 300;
+  height: 45px;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fe3939;
+  color: white;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+.btn:hover {
+  background-color: hsl(0, 99%, 55%);
+}
