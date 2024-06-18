@@ -12,6 +12,7 @@ const AuthorizationPage = () => {
   });
 
   const [isPending, setIsPending] = useState(false);
+  const [serverErrors, setServerErrors] = useState({});
 
   const navigate = useNavigate();
 
@@ -36,12 +37,15 @@ const AuthorizationPage = () => {
 
       setIsPending(false);
 
-      if (response.ok) {
+      if (!response.ok) {
+        const serverErr = await response.json();
+        setServerErrors(serverErr);
+      } else {
+        setServerErrors({});
         navigate("/dash");
       }
     } catch (error) {
       setIsPending(false);
-      console.log(error);
       navigate("/auth/err");
     }
   };
@@ -50,6 +54,35 @@ const AuthorizationPage = () => {
     <Substrate width="400px">
       <form onSubmit={handleFormSubmit} className={styles.auth}>
         <h2 className={styles.authH}>Вход на сайт</h2>
+        {Object.keys(serverErrors).map((key) =>
+          Array.isArray(serverErrors[key]) ? (
+            serverErrors[key].map((message, index) => (
+              <p
+                key={key + index}
+                style={{
+                  fontSize: 12 + "px",
+                  color: "red",
+                  marginTop: 20 + "px",
+                  marginBottom: 0 + "px",
+                }}
+              >
+                {message}
+              </p>
+            ))
+          ) : (
+            <p
+              key={key}
+              style={{
+                fontSize: 12 + "px",
+                color: "red",
+                marginTop: 20 + "px",
+                marginBottom: 0 + "px",
+              }}
+            >
+              {serverErrors[key]}
+            </p>
+          )
+        )}
         <label>
           Имя пользователя:
           <input

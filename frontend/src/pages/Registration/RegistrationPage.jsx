@@ -47,15 +47,12 @@ const RegistrationPage = () => {
         if (!response.ok) {
           const errorWithReg = await response.json();
           setServerErrors(errorWithReg);
-          // navigate("/reg/err");
         } else {
-          console.log("User added");
           setServerErrors({});
           navigate("/reg/success");
         }
       } catch (error) {
         setIsPending(false);
-        console.error("error: ", error);
         navigate("/reg/err");
       }
     }
@@ -105,6 +102,7 @@ const RegistrationPage = () => {
     }));
   };
 
+  // Нужно подправить, чтобы при получении ошибки от сервера ошибки отображались под формой, которая вызывает ошибку (начать исправлять с этой формы, надо добавить setServerErrors сюда, наверное)
   const validateForm = () => {
     const { username, email, password, confirmPassword } = data;
     const usernameValid = USER_REGEX.test(username);
@@ -126,6 +124,35 @@ const RegistrationPage = () => {
     <Substrate width="400px">
       <form onSubmit={handleFormSubmit} className={styles.reg}>
         <h2 className={styles.regH}>Регистрация нового пользователя</h2>
+        {Object.keys(serverErrors).map((key) =>
+          Array.isArray(serverErrors[key]) ? (
+            serverErrors[key].map((message, index) => (
+              <p
+                key={key + index}
+                style={{
+                  fontSize: 12 + "px",
+                  color: "red",
+                  marginTop: 20 + "px",
+                  marginBottom: 0 + "px",
+                }}
+              >
+                {message}
+              </p>
+            ))
+          ) : (
+            <p
+              key={key}
+              style={{
+                fontSize: 12 + "px",
+                color: "red",
+                marginTop: 20 + "px",
+                marginBottom: 0 + "px",
+              }}
+            >
+              {serverErrors[key]}
+            </p>
+          )
+        )}
         <label>
           Имя пользователя:
           <input
@@ -196,35 +223,6 @@ const RegistrationPage = () => {
           </Link>
         </p>
       </form>
-      {Object.keys(serverErrors).map((key) =>
-        Array.isArray(serverErrors[key]) ? (
-          serverErrors[key].map((message, index) => (
-            <p
-              key={key + index}
-              style={{
-                fontSize: 12 + "px",
-                color: "red",
-                marginTop: 10 + "px",
-                marginBottom: 0 + "px",
-              }}
-            >
-              {message}
-            </p>
-          ))
-        ) : (
-          <p
-            key={key}
-            style={{
-              fontSize: 12 + "px",
-              color: "red",
-              marginTop: 10 + "px",
-              marginBottom: 0 + "px",
-            }}
-          >
-            {serverErrors[key]}
-          </p>
-        )
-      )}
     </Substrate>
   );
 };
