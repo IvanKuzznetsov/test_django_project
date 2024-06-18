@@ -6,7 +6,6 @@ import Dashboard from "./pages/Dashboard";
 import RegistrationPage from "./pages/Registration/RegistrationPage";
 import RegistrationSuccess from "./pages/Registration/RegistrationSuccess";
 import RegistrationError from "./pages/Registration/RegistrationError";
-import RegistrationUserExists from "./pages/Registration/RegistrationUserExists";
 import AuthorizationPage from "./pages/Authorization/AuthorizationPage";
 import AuthorizationError from "./pages/Authorization/AuthorizationError";
 import ResetPassword from "./pages/Authorization/ResetPassword";
@@ -21,7 +20,6 @@ function App() {
           <Route path="/reg" element={<RegistrationPage />} />
           <Route path="/reg/success" element={<RegistrationSuccess />} />
           <Route path="/reg/err" element={<RegistrationError />} />
-          <Route path="/reg/user-exists" element={<RegistrationUserExists />} />
           <Route path="/auth" element={<AuthorizationPage />} />
           <Route path="/auth/err" element={<AuthorizationError />} />
           <Route path="/auth/reset-password" element={<ResetPassword />} />

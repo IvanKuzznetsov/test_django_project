@@ -23,6 +23,7 @@ const RegistrationPage = () => {
     confirmPassword: "",
   });
   const [isPending, setIsPending] = useState(false);
+  const [serverErrors, setServerErrors] = useState({});
   const navigate = useNavigate();
 
   const handleFormSubmit = async (event) => {
@@ -43,20 +44,18 @@ const RegistrationPage = () => {
 
         setIsPending(false);
 
-        if (response.ok) {
-          navigate("/reg/success");
-        } else if (response.status === 409) {
-          const errorText = await response.json();
-          console.error("Conflict error: ", errorText);
-          navigate("/reg/user-exists");
+        if (!response.ok) {
+          const errorWithReg = await response.json();
+          setServerErrors(errorWithReg);
+          // navigate("/reg/err");
         } else {
-          const errorText = await response.json();
-          console.error("Server error: ", errorText);
-          navigate("/reg/err");
+          console.log("User added");
+          setServerErrors({});
+          navigate("/reg/success");
         }
       } catch (error) {
         setIsPending(false);
-        console.error("Network error: ", error);
+        console.error("error: ", error);
         navigate("/reg/err");
       }
     }
@@ -197,6 +196,35 @@ const RegistrationPage = () => {
           </Link>
         </p>
       </form>
+      {Object.keys(serverErrors).map((key) =>
+        Array.isArray(serverErrors[key]) ? (
+          serverErrors[key].map((message, index) => (
+            <p
+              key={key + index}
+              style={{
+                fontSize: 12 + "px",
+                color: "red",
+                marginTop: 10 + "px",
+                marginBottom: 0 + "px",
+              }}
+            >
+              {message}
+            </p>
+          ))
+        ) : (
+          <p
+            key={key}
+            style={{
+              fontSize: 12 + "px",
+              color: "red",
+              marginTop: 10 + "px",
+              marginBottom: 0 + "px",
+            }}
+          >
+            {serverErrors[key]}
+          </p>
+        )
+      )}
     </Substrate>
   );
 };
