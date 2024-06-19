@@ -5,6 +5,7 @@ import Substrate from "../../components/UI/Substrate";
 import BtnClickLoader from "../../components/UI/BtnClickLoader";
 import styles from "./AuthorizationPage.module.css";
 
+// возможно стоит валидацию простую добавить и возможность входа по почте
 const AuthorizationPage = () => {
   const [data, setData] = useState({
     username: "",
@@ -35,12 +36,14 @@ const AuthorizationPage = () => {
         body: JSON.stringify(data),
       });
 
+      const responseData = await response.json();
       setIsPending(false);
 
       if (!response.ok) {
-        const serverErr = await response.json();
-        setServerErrors(serverErr);
+        setServerErrors(responseData);
       } else {
+        const token = responseData.auth_token;
+        localStorage.setItem("authToken", token);
         setServerErrors({});
         navigate("/dash");
       }
