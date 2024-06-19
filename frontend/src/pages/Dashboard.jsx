@@ -34,13 +34,27 @@ const Dashboard = () => {
     <Substrate width="300px">
       <h3>
         Имя пользователя:{" "}
-        <p style={{ fontSize: 16 + "px", color: "green" }}>
+        <p
+          style={{
+            fontSize: 16 + "px",
+            color: "green",
+            textDecoration: "underline",
+          }}
+        >
           {userData.username}
         </p>
       </h3>
       <h3>
         Почта:{" "}
-        <p style={{ fontSize: 16 + "px", color: "green" }}>{userData.email}</p>
+        <p
+          style={{
+            fontSize: 16 + "px",
+            color: "green",
+            textDecoration: "underline",
+          }}
+        >
+          {userData.email}
+        </p>
       </h3>
     </Substrate>
   );
