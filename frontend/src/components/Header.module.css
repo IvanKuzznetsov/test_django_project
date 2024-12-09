@@ -1,0 +1,17 @@
+.head {
+  min-width: 100vw;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: hsla(0, 0%, 100%, 0.757);
+  box-shadow: 0px 6px 5px rgb(0, 0, 0, 0.3);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.head img,
+.head a {
+  cursor: default;
+}
+.head p {
+  font-size: 14px;
+}

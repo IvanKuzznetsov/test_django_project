@@ -1,0 +1,41 @@
+.homeZagolovok {
+  margin-bottom: 25px;
+}
+.homeContainer {
+  margin: 4% auto;
+  padding: 40px;
+  max-width: 800px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
+  text-align: center;
+  background-color: hsla(0, 0%, 100%, 0.755);
+}
+.homeContainer p {
+  margin-bottom: 40px;
+}
+.homeBtnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+.homeBtnContainer button {
+  font-family: inherit;
+  font-weight: 300;
+  height: 45px;
+  min-width: 332px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fe3939;
+  cursor: pointer;
+  color: white;
+  transition-duration: 0.2s;
+}
+.homeBtnContainer button:hover {
+  background-color: hsl(0, 99%, 55%);
+}
+.homeBtnContainer a {
+  text-decoration: none;
+}
